@@ -1,0 +1,18 @@
+html {
+  transition: 0.2s all ease;
+  width: 100vw;
+  height: 100vh;
+}
+
+html.dark {
+  background-color: #716d6d;
+  color: #fff;
+}
+
+.dark .nav-links a {
+  color: #fff;
+}
+
+.dark .logo {
+  filter: invert(1);
+}

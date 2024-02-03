@@ -1,0 +1,91 @@
+---
+// Frontmatter script in Astro
+import swansongLogo from "../assets/img/swansong-logo-128.webp";
+import upRightArrow from "../assets/icons/up-right-arrow.png";
+import hamburger from "../assets/icons/hamburger.png";
+import { Image } from "astro:assets";
+import ThemeIcon from "./ThemeIcon.astro";
+// Define a function for toggling the menu in the client-side script below
+---
+
+<header
+  class="flex w-full mx-auto max-w-[1000px] flex-wrap items-start justify-between p-4 px-6 tracking-tighter md:pb-12"
+>
+  <a href="/" class="flex h-full gap-4">
+    <div class="logo-container m-auto w-16 rounded-full shadow-sm">
+      <Image
+        class="logo w-full rounded-full mix-blend-lighten"
+        src={swansongLogo}
+        alt="Swansong Logo"
+      />
+    </div>
+    <div class="name-container flex flex-col">
+      <span class="name block text-3xl font-extrabold">Sean Swanson</span>
+      <span class="name flex items-center justify-start gap-2 italic">
+        Web Dev <span class="text-xs">❖</span> Helpful Human
+      </span>
+    </div>
+  </a>
+  <button
+    class="menu-btn block pr-[6px] pt-[14px] text-lg md:hidden"
+    onclick="toggleMenu()"
+  >
+    <Image src={hamburger} width="15" height="15" alt="menu icon" />
+  </button>
+  <div
+    id="menu"
+    class="hidden absolute top-0 left-0 z-50 h-screen w-full bg-white py-4 px-6"
+  >
+    <div class="flex w-full items-start justify-between">
+      <!-- Repeated LogoAndName for the menu -->
+      <a href="/" class="flex h-full gap-4">
+        <div class="logo-container m-auto w-16 rounded-full shadow-sm">
+          <Image
+            class="logo w-full rounded-full"
+            src={swansongLogo}
+            alt="Swansong Logo"
+          />
+        </div>
+        <div class="name-container flex flex-col">
+          <span class="name block text-3xl font-extrabold">Sean Swanson</span>
+          <span class="name flex items-center justify-start gap-2 italic">
+            Web Dev <span class="text-xs">❖</span> Helpful Human
+          </span>
+        </div>
+      </a>
+      <button class="p-2 text-lg" onclick="toggleMenu()"> &times;</button>
+    </div>
+    <ul class="flex flex-col justify-end gap-8 pt-2">
+      <!-- Link Items -->
+      <li class="w-full border-t border-slate-600 md:w-3/12">
+        <a href="/dev" class="group flex flex-col">
+          <div class="flex items-center justify-between">
+            <span>
+              001
+              <span class="px-2 font-extrabold">Dev</span>
+            </span>
+            <Image
+              src={upRightArrow}
+              width="15"
+              height="15"
+              alt="Arrow pointing up and to the right"
+            />
+          </div>
+        </a>
+      </li>
+      <!-- Repeat for other links -->
+    </ul>
+  </div>
+  <ul class="hidden justify-end gap-8 pt-2 md:flex">
+    <!-- Repeat Link Items for desktop -->
+  </ul>
+  <ThemeIcon />
+</header>
+
+<script is:inline>
+  const menuContainer = document.getElementById("menu");
+
+  const toggleMenu = () => {
+    menuContainer?.classList.toggle("hidden");
+  };
+</script>
